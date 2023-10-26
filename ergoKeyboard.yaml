@@ -1,0 +1,86 @@
+metadata:
+  engine: 4.0.2
+  version: 0.1
+  designer: Isaac Davies
+  contact: isaacadavies@gmail.com
+units:
+  xspace: cx
+  yspace: cy
+  capsx: 16.5
+  capsy: 16.5
+  pcb_outline_spacingx: capsx/2 + 3
+  pcb_outline_spacingy: capsy/2 + 3
+points:
+  zones:
+    matrix:
+      key:
+        padding: yspace
+        spread: xspace
+      anchor:
+        rotate: 9
+      columns:
+        pinky:
+        ring:
+          key.splay: -5
+          key.origin: [-xspace, -yspace]
+          key.stagger: 10
+        middle:
+          key.splay: -5
+          key.origin: [0, -yspace]
+          key.stagger: 5
+        index:
+          key.stagger: -6
+        inner:
+          key.stagger: -2
+      rows:
+        bottom:
+        home:
+        top:
+    thumbfan:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -yspace*(3/2)]
+      columns:
+        near:
+          key.splay: -10
+        home:
+          key.spread: 20
+          key.splay: -10
+          key.origin: [-xspace+2, -yspace]
+        far:
+          key.spread: 20
+          key.splay: -10
+          key.origin: [-xspace+2, -yspace]
+      rows:
+        thumb:
+  mirror:
+    ref: matrix_pinky_home
+    distance: 250
+outlines:
+  keycaps:
+    - what: rectangle
+      where: true
+      size: [capsx, capsy]
+  pcb_outline:
+    - what: polygon
+      operation: stack
+      fillet: 6
+      points:
+      - ref: matrix_pinky_top
+        shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
+      - ref: matrix_middle_top
+        shift: [0, pcb_outline_spacingy*1.5]
+      - ref: matrix_index_top
+        shift: [pcb_outline_spacingx*4, pcb_outline_spacingy]
+      - ref: matrix_index_bottom
+        shift: [pcb_outline_spacingx*4, 0]
+      - ref: thumbfan_far_thumb
+        shift: [pcb_outline_spacingx, pcb_outline_spacingy]
+      - ref: thumbfan_far_thumb
+        shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
+      - ref: matrix_pinky_bottom
+        shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
+  panel:
+  - name: pcb_outline
+  - operation: subtract
+    name: keycaps
