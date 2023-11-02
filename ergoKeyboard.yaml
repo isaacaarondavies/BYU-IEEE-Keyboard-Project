@@ -10,6 +10,8 @@ units:
   capsy: 16.5
   pcb_outline_spacingx: capsx/2 + 3
   pcb_outline_spacingy: capsy/2 + 3
+  board_outline_spacingx: capsx/10 + 5
+  board_outline_spacingy: capsy + 5
 points:
   zones:
     matrix:
@@ -53,7 +55,7 @@ points:
           key.origin: [-xspace+2, -yspace]
       rows:
         thumb:
-  mirror:
+  mirror: &mirror
     ref: matrix_pinky_home
     distance: 250
 outlines:
@@ -80,7 +82,48 @@ outlines:
         shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
       - ref: matrix_pinky_bottom
         shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
+  board:
+    - what: polygon
+      operation: stack
+      fillet: 6
+      points:
+        - ref: matrix_pinky_top
+          shift: [-board_outline_spacingx*2,board_outline_spacingy]
+        - ref: matrix_ring_top
+          shift: [0,board_outline_spacingy]
+        - ref: matrix_middle_top
+          shift: [0,board_outline_spacingy]
+        - ref: matrix_index_top
+          shift: [0,board_outline_spacingy]
+        - ref: matrix_inner_top
+          shift: [0,board_outline_spacingy]
+        - ref: mirror_matrix_inner_top
+          shift: [0,board_outline_spacingy]
+        - ref: mirror_matrix_index_top
+          shift: [0,board_outline_spacingy]
+        - ref: mirror_matrix_middle_top
+          shift: [0,board_outline_spacingy]
+        - ref: mirror_matrix_ring_top
+          shift: [0,board_outline_spacingy]
+        - ref: mirror_matrix_pinky_top
+          shift: [-board_outline_spacingx*2,board_outline_spacingy]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [-board_outline_spacingx*2,-board_outline_spacingy]
+        - ref: mirror_thumbfan_near_thumb
+          shift: [0,-board_outline_spacingy]
+        - ref: mirror_thumbfan_far_thumb
+          shift: [0,-board_outline_spacingy]
+        - ref: thumbfan_far_thumb
+          shift: [0,-board_outline_spacingy]
+        - ref: thumbfan_near_thumb
+          shift: [0,-board_outline_spacingy]
+        - ref: matrix_pinky_bottom
+          shift: [-board_outline_spacingx*2,-board_outline_spacingy]
   panel:
   - name: pcb_outline
+  - operation: subtract
+    name: keycaps
+  boardLayout:
+  - name: board
   - operation: subtract
     name: keycaps
