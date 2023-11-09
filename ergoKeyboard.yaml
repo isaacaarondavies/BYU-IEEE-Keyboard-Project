@@ -20,6 +20,7 @@ points:
         spread: xspace
       anchor:
         rotate: 9
+        shift: [100, -100]
       columns:
         pinky:
         ring:
@@ -55,75 +56,63 @@ points:
           key.origin: [-xspace+2, -yspace]
       rows:
         thumb:
-  mirror: &mirror
-    ref: matrix_pinky_home
-    distance: 250
 outlines:
   keycaps:
-    - what: rectangle
-      where: true
-      size: [capsx, capsy]
-  pcb_outline:
-    - what: polygon
-      operation: stack
-      fillet: 6
-      points:
-      - ref: matrix_pinky_top
-        shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
-      - ref: matrix_middle_top
-        shift: [0, pcb_outline_spacingy*1.5]
-      - ref: matrix_index_top
-        shift: [pcb_outline_spacingx*4, pcb_outline_spacingy]
-      - ref: matrix_index_bottom
-        shift: [pcb_outline_spacingx*4, 0]
-      - ref: thumbfan_far_thumb
-        shift: [pcb_outline_spacingx, pcb_outline_spacingy]
-      - ref: thumbfan_far_thumb
-        shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
-      - ref: matrix_pinky_bottom
-        shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
+  - what: rectangle
+    where: true
+    size: [capsx, capsy]
   board:
-    - what: polygon
-      operation: stack
-      fillet: 6
-      points:
-        - ref: matrix_pinky_top
-          shift: [-board_outline_spacingx*2,board_outline_spacingy]
-        - ref: matrix_ring_top
-          shift: [0,board_outline_spacingy]
-        - ref: matrix_middle_top
-          shift: [0,board_outline_spacingy]
-        - ref: matrix_index_top
-          shift: [0,board_outline_spacingy]
-        - ref: matrix_inner_top
-          shift: [0,board_outline_spacingy]
-        - ref: mirror_matrix_inner_top
-          shift: [0,board_outline_spacingy]
-        - ref: mirror_matrix_index_top
-          shift: [0,board_outline_spacingy]
-        - ref: mirror_matrix_middle_top
-          shift: [0,board_outline_spacingy]
-        - ref: mirror_matrix_ring_top
-          shift: [0,board_outline_spacingy]
-        - ref: mirror_matrix_pinky_top
-          shift: [-board_outline_spacingx*2,board_outline_spacingy]
-        - ref: mirror_matrix_pinky_bottom
-          shift: [-board_outline_spacingx*2,-board_outline_spacingy]
-        - ref: mirror_thumbfan_near_thumb
-          shift: [0,-board_outline_spacingy]
-        - ref: mirror_thumbfan_far_thumb
-          shift: [0,-board_outline_spacingy]
-        - ref: thumbfan_far_thumb
-          shift: [0,-board_outline_spacingy]
-        - ref: thumbfan_near_thumb
-          shift: [0,-board_outline_spacingy]
-        - ref: matrix_pinky_bottom
-          shift: [-board_outline_spacingx*2,-board_outline_spacingy]
-  panel:
-  - name: pcb_outline
-  - operation: subtract
-    name: keycaps
-  boardLayout:
+  - what: polygon
+    operation: stack
+    fillet: 6
+    points:
+    - ref: matrix_pinky_top
+      shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
+    - ref: matrix_middle_top
+      shift: [0, pcb_outline_spacingy*1.5]
+    - ref: matrix_index_top
+      shift: [pcb_outline_spacingx*4.5, pcb_outline_spacingy]
+    - ref: matrix_index_bottom
+      shift: [pcb_outline_spacingx*4.5, 0]
+    - ref: thumbfan_far_thumb
+      shift: [pcb_outline_spacingx, pcb_outline_spacingy]
+    - ref: thumbfan_far_thumb
+      shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
+    - ref: matrix_pinky_bottom
+      shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
+  rightPcb:
   - name: board
   - operation: subtract
     name: keycaps
+pcbs:
+  boardpcb:
+    outlines:
+      main:
+        outline: rightPcb
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [cy/2 -.7, -3]
+          rotate: 90
+      microcontroller:
+        what: promicro
+        where: matrix_index_top
+        params:
+          orientation: 'up'
+        adjust:
+          shift: [cy*2.25,-(cx/2)]
+          rotate: -90
