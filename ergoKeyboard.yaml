@@ -114,5 +114,5 @@ pcbs:
         params:
           orientation: 'up'
         adjust:
-          shift: [cy*2.25,-(cx/2)]
+          shift: [cy*2.3,-(cx)]
           rotate: -90
