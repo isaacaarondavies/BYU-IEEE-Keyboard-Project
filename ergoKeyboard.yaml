@@ -116,3 +116,17 @@ pcbs:
         adjust:
           shift: [cy*2.3,-(cx)]
           rotate: -90
+      trrs:
+        what: trrs
+        where:
+          ref: matrix_inner_bottom
+        params:
+          A: GND
+          B: GND
+          C: P2
+          D: VCC
+          reverse: true
+          symmetric: true
+        adjust:
+          shift: [cy*1.8,-(cx*0.4)]
+          rotate: -90
