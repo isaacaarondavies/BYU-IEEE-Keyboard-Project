@@ -23,22 +23,30 @@ points:
         shift: [100, -100]
       columns:
         pinky:
+          key.col_net: P0
         ring:
           key.splay: -5
           key.origin: [-xspace, -yspace]
           key.stagger: 10
+          key.col_net: P1
         middle:
           key.splay: -5
           key.origin: [0, -yspace]
           key.stagger: 5
+          key.col_net: P2
         index:
           key.stagger: -6
+          key.col_net: P3
         inner:
           key.stagger: -2
+          key.col_net: P4
       rows:
         bottom:
+          row_net: P8
         home:
+          row_net: P7
         top:
+          row_net: P6
     thumbfan:
       anchor:
         ref: matrix_index_bottom
@@ -46,16 +54,20 @@ points:
       columns:
         near:
           key.splay: -10
+          key.col_net: P2
         home:
           key.spread: 20
           key.splay: -10
           key.origin: [-xspace+2, -yspace]
+          key.col_net: P3
         far:
           key.spread: 20
           key.splay: -10
           key.origin: [-xspace+2, -yspace]
+          key.col_net: P4
       rows:
         thumb:
+          row_net: P9
 outlines:
   keycaps:
   - what: rectangle
@@ -97,7 +109,7 @@ pcbs:
           keycaps: true
           reverse: true
           hotswap: true
-          from: "{{column_net}}"
+          from: "{{col_net}}"
           to: "{{colrow}}"
       diode:
         what: diode
@@ -106,8 +118,8 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [cy/2 -.7, -3]
-          rotate: 90
+          shift: [0, -5.5]
+          rotate: 180
       microcontroller:
         what: promicro
         where: matrix_index_top
