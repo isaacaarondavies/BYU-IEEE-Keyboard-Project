@@ -16,8 +16,8 @@ points:
   zones:
     matrix:
       key:
-        padding: yspace
-        spread: xspace
+        padding: yspace+2
+        spread: xspace+1.5
       anchor:
         rotate: 9
         shift: [100, -100]
@@ -70,32 +70,34 @@ points:
           row_net: P9
 outlines:
   keycaps:
-  - what: rectangle
-    where: true
-    size: [capsx, capsy]
+    - what: rectangle
+      where: true
+      size: [capsx, capsy]
   board:
-  - what: polygon
-    operation: stack
-    fillet: 6
-    points:
-    - ref: matrix_pinky_top
-      shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
-    - ref: matrix_middle_top
-      shift: [0, pcb_outline_spacingy*1.5]
-    - ref: matrix_index_top
-      shift: [pcb_outline_spacingx*4.5, pcb_outline_spacingy]
-    - ref: matrix_index_bottom
-      shift: [pcb_outline_spacingx*4.5, 0]
-    - ref: thumbfan_far_thumb
-      shift: [pcb_outline_spacingx, pcb_outline_spacingy]
-    - ref: thumbfan_far_thumb
-      shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
-    - ref: matrix_pinky_bottom
-      shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
+    - what: polygon
+      operation: stack
+      fillet: 6
+      points:
+        - ref: matrix_pinky_top
+          shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
+        - ref: matrix_ring_top
+          shift: [0, pcb_outline_spacingy*1.5]
+        - ref: matrix_middle_top
+          shift: [0, pcb_outline_spacingy*1.5]
+        - ref: matrix_index_top
+          shift: [pcb_outline_spacingx*4.5, pcb_outline_spacingy]
+        - ref: matrix_index_bottom
+          shift: [pcb_outline_spacingx*4.5, 0]
+        - ref: thumbfan_far_thumb
+          shift: [pcb_outline_spacingx, pcb_outline_spacingy]
+        - ref: thumbfan_far_thumb
+          shift: [pcb_outline_spacingx, -pcb_outline_spacingy]
+        - ref: matrix_pinky_bottom
+          shift: [-pcb_outline_spacingx, -pcb_outline_spacingy]
   rightPcb:
-  - name: board
-  - operation: subtract
-    name: keycaps
+    - name: board
+    - operation: subtract
+      name: keycaps
 pcbs:
   boardpcb:
     outlines:
@@ -124,9 +126,9 @@ pcbs:
         what: promicro
         where: matrix_index_top
         params:
-          orientation: 'up'
+          orientation: "up"
         adjust:
-          shift: [cy*2.3,-(cx)]
+          shift: [cy*2.3, -(cx)]
           rotate: -90
       trrs:
         what: trrs
@@ -140,5 +142,11 @@ pcbs:
           reverse: true
           symmetric: true
         adjust:
-          shift: [cy*1.8,-(cx*0.4)]
+          shift: [cy*1.8, -(cx*0.4)]
           rotate: -90
+
+cases:
+  faceplate:
+    - what: outline
+      name: rightPcb
+      extrude: 3
