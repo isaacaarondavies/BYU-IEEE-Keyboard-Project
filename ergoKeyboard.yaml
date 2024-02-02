@@ -6,8 +6,8 @@ metadata:
 units:
   xspace: cx
   yspace: cy
-  capsx: 16.5
-  capsy: 16.5
+  capsx: 14
+  capsy: 14
   pcb_outline_spacingx: capsx/2 + 3
   pcb_outline_spacingy: capsy/2 + 3
   board_outline_spacingx: capsx/10 + 5
@@ -20,7 +20,7 @@ points:
         spread: xspace+1.5
       anchor:
         rotate: 9
-        shift: [100, -100]
+        shift: [-50, -10]
       columns:
         pinky:
           key.col_net: P0
@@ -49,19 +49,19 @@ points:
           row_net: P6
     thumbfan:
       anchor:
-        ref: matrix_index_bottom
+        ref: matrix_inner_bottom
         shift: [0, -yspace*(3/2)]
       columns:
         near:
           key.splay: -10
           key.col_net: P2
         home:
-          key.spread: 20
+          key.spread: 25
           key.splay: -10
           key.origin: [-xspace+2, -yspace]
           key.col_net: P3
         far:
-          key.spread: 20
+          key.spread: 25
           key.splay: -10
           key.origin: [-xspace+2, -yspace]
           key.col_net: P4
