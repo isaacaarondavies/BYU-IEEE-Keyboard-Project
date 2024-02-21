@@ -6,8 +6,8 @@ metadata:
 units:
   xspace: cx
   yspace: cy
-  capsx: 14
-  capsy: 14
+  capsx: cx
+  capsy: cy
   pcb_outline_spacingx: capsx/2 + 3
   pcb_outline_spacingy: capsy/2 + 3
   board_outline_spacingx: capsx/10 + 5
@@ -20,7 +20,7 @@ points:
         spread: xspace+1.5
       anchor:
         rotate: 9
-        shift: [-50, -10]
+        shift: [50, -100]
       columns:
         pinky:
           key.col_net: P0
@@ -81,13 +81,15 @@ outlines:
         - ref: matrix_pinky_top
           shift: [-pcb_outline_spacingx, pcb_outline_spacingy]
         - ref: matrix_ring_top
-          shift: [0, pcb_outline_spacingy*1.5]
+          shift: [0, pcb_outline_spacingy*1.3]
         - ref: matrix_middle_top
-          shift: [0, pcb_outline_spacingy*1.5]
+          shift: [0, pcb_outline_spacingy]
         - ref: matrix_index_top
-          shift: [pcb_outline_spacingx*4.5, pcb_outline_spacingy]
-        - ref: matrix_index_bottom
-          shift: [pcb_outline_spacingx*4.5, 0]
+          shift: [pcb_outline_spacingx, pcb_outline_spacingy*1.4]
+        - ref: matrix_inner_top
+          shift: [pcb_outline_spacingx*2.8, pcb_outline_spacingy]
+        - ref: matrix_inner_bottom
+          shift: [pcb_outline_spacingx*2.8, 0]
         - ref: thumbfan_far_thumb
           shift: [pcb_outline_spacingx, pcb_outline_spacingy]
         - ref: thumbfan_far_thumb
@@ -102,7 +104,7 @@ pcbs:
   boardpcb:
     outlines:
       main:
-        outline: rightPcb
+        outline: board
     footprints:
       choc_hotswap:
         what: choc
@@ -128,7 +130,7 @@ pcbs:
         params:
           orientation: "up"
         adjust:
-          shift: [cy*2.3, -(cx)]
+          shift: [cy*2.5, -(cx)/2]
           rotate: -90
       trrs:
         what: trrs
@@ -142,7 +144,7 @@ pcbs:
           reverse: true
           symmetric: true
         adjust:
-          shift: [cy*1.8, -(cx*0.4)]
+          shift: [cy*1.9, (cx*0.4)]
           rotate: -90
 
 cases:
